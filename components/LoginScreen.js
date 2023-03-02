@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import {
   ScrollView,
   Text,
@@ -10,11 +10,18 @@ import {
 export default function LoginScreen({ navigation }) {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
-
+  const [disabler, setDisabler] = useState(true);
+useEffect(()=>{
+  if(email != '' && password != ''){
+  setDisabler(false);
+  }else{
+  setDisabler(true);
+  }
+},[email, password])
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-      <Text style={styles.regularText}>Login to continue </Text>
+      <Text style={styles.regularText}>Enter details to continue </Text>
       <TextInput
         style={styles.inputBox}
         value={email}
@@ -32,8 +39,8 @@ export default function LoginScreen({ navigation }) {
       />
       <Pressable
         onPress={() => navigation.navigate('Welcome')}
-        style={styles.button}>
-        <Text style={styles.buttonText}>Log in</Text>
+        style={styles.button} disabled={disabler} >
+        <Text style={styles.buttonText}>Next</Text>
       </Pressable>
     </ScrollView>
   );
