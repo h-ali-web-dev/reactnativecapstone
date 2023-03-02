@@ -16,7 +16,8 @@ export default function App() {
     <>
       <NavigationContainer>
         <View style={styles.container}>
-          <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Navigator initialRouteName="OnBoarding">
+            <Stack.Screen name="OnBoarding" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Newsletter" component={Newsletter} />
           </Stack.Navigator>
